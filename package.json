@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4200",
-    "build": "ng build --prod -bh http://rafr-admin.s3-website-us-east-1.amazonaws.com/ -d http://rafr-admin.s3-website-us-east-1.amazonaws.com/",
+    "build": "ng build --prod -bh /RAFR-Admin -d https://nick-freitas.github.io/RAFR-Admin/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
