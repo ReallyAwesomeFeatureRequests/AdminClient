@@ -1,0 +1,47 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="/">Really Awesome Feature Requests</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" *ngIf="auth.isAuthenticated | async; else notAuthenticatedUl">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/clients">Clients</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/product-areas">Product Areas</a>
+      </li>
+    </ul>
+    <ng-template #notAuthenticatedUl>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Please sign in first" disabled>Clients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tooltip" data-placement="bottom" title="Please sign in first" disabled>Product
+            Areas</a>
+        </li>
+      </ul>
+    </ng-template>
+    <div>
+      <button type="button" class="btn btn-outline-danger" *ngIf="auth.isAuthenticated | async; else notAuthenticated"
+              (click)="auth.logout()">
+        Sign Out
+      </button>
+      <ng-template #notAuthenticated>
+        <button type="button" class="btn btn-outline-success" (click)="auth.login()">
+          Sign In
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</nav>

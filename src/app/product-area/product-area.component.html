@@ -1,0 +1,43 @@
+<div *ngIf="productArea | async; let productArea; else productAreaNotLoaded">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <h3>{{productArea.name}}</h3>
+      <div class="view-button-group" *ngIf="!editing">
+        <button type="button" class="btn btn-primary pull-right" (click)="enableEditing(productArea)">Edit</button>
+      </div>
+      <div class="edit-button-group" *ngIf="editing">
+        <button type="button" class="btn btn-danger pull-right" (click)="destroy(productArea.id)">Delete</button>
+        <button type="button" class="btn btn-secondary pull-right" (click)="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary pull-right" (click)="save(productArea)">Save</button>
+      </div>
+    </div>
+
+    <div class="card-block" *ngIf="editing; else viewModeCardBlock">
+      <div class="form-group row">
+        <label for="product-area-name" class="col-2 col-form-label">Name</label>
+        <div class="col-10">
+          <input class="form-control" type="text" id="product-area-name" name="name" [(ngModel)]="productArea.name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-2 col-form-label">Description</label>
+        <div class="col-10">
+          <textarea class="form-control" id="description" name="description" aria-describedby="descriptionHelp"
+                    placeholder="Enter description" [(ngModel)]="productArea.description" rows="3"
+                    required></textarea>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #viewModeCardBlock>
+      <div class="card-block">
+        <p class="card-text">Name: {{productArea.name}}</p>
+        <p class="card-text">Description: {{productArea.description}}</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #productAreaNotLoaded>
+  <rafr-loading [loadingText]="'Loading product area'"></rafr-loading>
+</ng-template>

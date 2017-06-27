@@ -1,0 +1,43 @@
+<div *ngIf="client | async; let client; else clientNotLoaded">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <h3>{{client.name}}</h3>
+      <div class="view-button-group" *ngIf="!editing">
+        <button type="button" class="btn btn-primary pull-right" (click)="enableEditing(client)">Edit</button>
+      </div>
+      <div class="edit-button-group" *ngIf="editing">
+        <button type="button" class="btn btn-danger pull-right" (click)="destroy(client.id)">Delete</button>
+        <button type="button" class="btn btn-secondary pull-right" (click)="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary pull-right" (click)="save(client)">Save</button>
+      </div>
+    </div>
+
+    <div class="card-block" *ngIf="editing; else viewModeCardBlock">
+      <div class="form-group row">
+        <label for="name" class="col-2 col-form-label">Name</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="client.name" id="name" name="name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="description" class="col-2 col-form-label">Description</label>
+        <div class="col-10">
+          <textarea class="form-control" id="description" name="description" aria-describedby="descriptionHelp"
+                    placeholder="Enter description" [(ngModel)]="client.description" rows="3"
+                    required></textarea>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #viewModeCardBlock>
+      <div class="card-block">
+        <p class="card-text">Name: {{client.name}}</p>
+        <p class="card-text">Description: {{client.description}}</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #clientNotLoaded>
+  <rafr-loading [loadingText]="'Loading client'"></rafr-loading>
+</ng-template>

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-block">
+    <form (ngSubmit)="createClient()" #createClientForm="ngForm">
+      <h4 class="card-title">Create Client</h4>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input class="form-control" id="name" name="name" placeholder="Enter name" aria-describedby="nameHelp"
+               [(ngModel)]="clientModel.name" type="text" required>
+        <small id="nameHelp" class="form-text text-muted">The client's name</small>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" aria-describedby="descriptionHelp"
+                  placeholder="Enter description" [(ngModel)]="clientModel.description" rows="3"
+                  required></textarea>
+        <small id="descriptionHelp" class="form-text text-muted">A short description of the product</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+</div>

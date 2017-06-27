@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-block">
+    <form (ngSubmit)="createProductArea()" #createProductAreaForm="ngForm">
+      <h4 class="card-title">Create Product Area</h4>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp"
+               placeholder="Enter name" [(ngModel)]="productAreaModel.name" required>
+        <small id="nameHelp" class="form-text text-muted">The product area's name</small>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" aria-describedby="descriptionHelp"
+                  placeholder="Enter description" [(ngModel)]="productAreaModel.description" rows="3"
+                  required></textarea>
+        <small id="descriptionHelp" class="form-text text-muted">A short description of the product</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+</div>
